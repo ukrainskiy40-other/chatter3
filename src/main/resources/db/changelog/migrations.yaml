@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+        id: 1669312411_create_tables
+        author: aukrainskiy
+        changes:
+            - sqlFile:
+                  dbms: postgresql
+                  encoding: utf8
+                  endDelimiter:  \n/\s*\n|\n/\s*$
+                  path: changelog/migrations/1669312411_create_tables.sql
+                  relativeToChangelogFile: true
+                  stripComments: true
+  - changeSet:
+        id: 1670347349_user_auth
+        author: aukrainskiy
+        changes:
+            - sqlFile:
+                  dbms: postgresql
+                  encoding: utf8
+                  endDelimiter:  \n/\s*\n|\n/\s*$
+                  path: changelog/migrations/1670347349_user_auth.sql
+                  relativeToChangelogFile: true
+                  stripComments: true
