@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @RequestMapping("/api/v1/front/users-chatter")
 @Tag(name = "users-chatter")
-// @PreAuthorize("isAuthenticated()")
-@Secured({"USER_USER"})
+@PreAuthorize("isAuthenticated()")
+@Secured({"ROLE_USER"})
 public interface UserChatterControllerApi {
 
     @GetMapping
