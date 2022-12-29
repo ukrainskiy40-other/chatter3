@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                 .usersByUsernameQuery(
                         "select login as username, password_bcrypt as password, active as enabled from user_chatter where login = ?")
                 .authoritiesByUsernameQuery(
-                        "select login as username, password_bcrypt as password, active as enabled from user_chatter where login = ?");
+                        "select ur.* from user_role ur join user_chatter uc on uc.user_role_id = ur.id where uc.login = ?");
     }
 
     @Bean

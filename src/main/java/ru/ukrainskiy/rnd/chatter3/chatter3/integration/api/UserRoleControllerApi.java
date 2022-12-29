@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.security.RolesAllowed;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserRoleDto;
 
 
 @RequestMapping("/api/v1/front/users-role")
 @Tag(name = "users-role")
 @PreAuthorize("isAuthenticated()")
+@RolesAllowed("USER_ADMIN")
 public interface UserRoleControllerApi {
     
     @GetMapping

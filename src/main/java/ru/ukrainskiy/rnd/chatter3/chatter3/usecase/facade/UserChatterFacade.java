@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.entity.UserChatterEntity;
+import ru.ukrainskiy.rnd.chatter3.chatter3.model.exception.EntityNotFoundException;
 import ru.ukrainskiy.rnd.chatter3.chatter3.usecase.repository.UserChatterRepository;
 
 @Service
@@ -29,5 +30,12 @@ public class UserChatterFacade {
 
     public UserChatterEntity save(UserChatterEntity entity) {
         return repository.save(entity);
+    }
+
+    public void setActive(Long id) {
+        UserChatterEntity entity = findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("UserChatter by id not found."));
+        entity.setActive(true);
+        repository.save(entity);
     }
 }
