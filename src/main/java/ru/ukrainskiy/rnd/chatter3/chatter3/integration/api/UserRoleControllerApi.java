@@ -13,14 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.annotation.security.RolesAllowed;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserRoleDto;
 
 
 @RequestMapping("/api/v1/front/users-role")
 @Tag(name = "users-role")
 @PreAuthorize("isAuthenticated()")
-@RolesAllowed("USER_ADMIN")
+@Secured("USER_ADMIN")
 public interface UserRoleControllerApi {
     
     @GetMapping

@@ -47,6 +47,8 @@ dependencies {
 	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	implementation 'org.apache.commons:commons-lang3:3.9'
+
 	jdbc "org.postgresql:postgresql"
 	lb "org.liquibase:liquibase-core"
 	lb "org.postgresql:postgresql"
