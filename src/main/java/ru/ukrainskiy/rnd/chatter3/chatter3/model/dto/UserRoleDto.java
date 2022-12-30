@@ -1,6 +1,9 @@
 package ru.ukrainskiy.rnd.chatter3.chatter3.model.dto;
 
+import lombok.Data;
 
-public record UserRoleDto(Long id, String userRole) {
-    public UserRoleDto {}
+@Data
+public class UserRoleDto {
+    private Long id;
+    private String userRole;
 }

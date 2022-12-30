@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
 
     private final DataSource dataSource;
@@ -84,7 +87,12 @@ public class SecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurity() {
-        return web -> web.ignoring().requestMatchers("/profile", "/userChatterEntities", "/userRoleEntities");
+            return web -> web.ignoring().requestMatchers("/profile", "/userChatterEntities", "/userRoleEntities");
     }
+    
+//     @Bean
+//     static GrantedAuthorityDefaults grantedAuthorityDefaults() {
+//             return new GrantedAuthorityDefaults("");
+//     }
 
 }
