@@ -1,7 +1,6 @@
 package ru.ukrainskiy.rnd.chatter3.chatter3.config;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Configuration;

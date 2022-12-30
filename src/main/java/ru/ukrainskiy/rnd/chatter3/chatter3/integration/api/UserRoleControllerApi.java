@@ -19,7 +19,7 @@ import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserRoleDto;
 @RequestMapping("/api/v1/front/users-role")
 @Tag(name = "users-role")
 @PreAuthorize("isAuthenticated()")
-@Secured("USER_ADMIN")
+@Secured("ROLE_ADMIN")
 public interface UserRoleControllerApi {
     
     @GetMapping
