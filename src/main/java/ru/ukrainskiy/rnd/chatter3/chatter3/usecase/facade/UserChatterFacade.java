@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.entity.UserChatterEntity;
+import ru.ukrainskiy.rnd.chatter3.chatter3.model.entity.UserEmailEntity;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.exception.EntityNotFoundException;
 import ru.ukrainskiy.rnd.chatter3.chatter3.usecase.repository.UserChatterRepository;
+import ru.ukrainskiy.rnd.chatter3.chatter3.usecase.repository.UserEmailRepository;
 
 @Service
 @RequiredArgsConstructor
 public class UserChatterFacade {
 
     private final UserChatterRepository repository;
+    private final UserEmailRepository userEmailRepository;
 
     public List<UserChatterEntity> findAll() {
         return repository.findAll();
@@ -37,5 +40,9 @@ public class UserChatterFacade {
                 .orElseThrow(() -> new EntityNotFoundException("UserChatter by id not found."));
         entity.setActive(true);
         repository.save(entity);
+    }
+
+    public Optional<UserChatterEntity> findByEmail(String userEmail) {
+        return userEmailRepository.findByUserEmail(userEmail).map(UserEmailEntity::getUserChatter);
     }
 }

@@ -38,15 +38,16 @@ public class UserChatterAdapter {
         if (facade.findByLogin(form.username()).isPresent()) {
             throw new RuntimeException();
         }
-        // if (facade.findByEmail(form.getEmail()).isPresent()) {
-        // throw new RuntimeException();
-        // }
+        if (facade.findByEmail(form.email()).isPresent()) {
+        throw new RuntimeException();
+        }
         var passwordEncoder = new BCryptPasswordEncoder();
         UserChatterEntity entity = new UserChatterEntity();
         entity.setActive(false);
         entity.setLogin(form.username().toLowerCase());
         entity.setPasswordBcrypt(passwordEncoder.encode(form.password()));
         entity.setFullName(form.fullName());
+        entity.setUserEmailList(form.email());
         Optional<UserRoleEntity> userRoleEntity = userRoleFacade.findById(1l);
         if (userRoleEntity.isPresent()) {
             entity.setUserRole(userRoleEntity.get());
