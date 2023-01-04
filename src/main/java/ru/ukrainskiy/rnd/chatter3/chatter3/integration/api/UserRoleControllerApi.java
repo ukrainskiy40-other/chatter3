@@ -21,7 +21,7 @@ import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserRoleDto;
 public interface UserRoleControllerApi {
     
     @GetMapping
-    @Secured("ROLE_USER")
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     List<UserRoleDto> getAllUserRole();
 
     @GetMapping("{userRoleId}")
