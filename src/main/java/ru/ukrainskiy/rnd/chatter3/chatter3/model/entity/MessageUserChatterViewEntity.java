@@ -3,8 +3,10 @@ package ru.ukrainskiy.rnd.chatter3.chatter3.model.entity;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "message_user_chatter_view")
 public class MessageUserChatterViewEntity extends EntityLongId {
     
     private String message;
