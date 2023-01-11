@@ -40,7 +40,8 @@ public class UserChatterEntity extends EntityLongId {
     @OneToMany(mappedBy = "userChatter", fetch = FetchType.LAZY)
     private List<UserEmailEntity> userEmailList = new ArrayList<>();
 
-    
+    @OneToMany(mappedBy = "userChatter", fetch = FetchType.LAZY)
+    private List<MessageChatterEntity> messageChatterList = new ArrayList<>(); 
 
     public String getLogin() {
         return login;
@@ -91,6 +92,11 @@ public class UserChatterEntity extends EntityLongId {
         userEmailEntity.setUserChatter(this);
         userEmailEntity.setUserEmail(email);
         userEmailList.add(userEmailEntity);
+    }
+
+
+    public List<MessageChatterEntity> getMessageChatterList() {
+        return this.messageChatterList;
     }
 
 

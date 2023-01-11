@@ -21,3 +21,14 @@ databaseChangeLog:
                   path: changelog/migrations/1670347349_user_auth.sql
                   relativeToChangelogFile: true
                   stripComments: true
+  - changeSet:
+        id: 1673261785_create_message_view
+        author: aukrainskiy
+        changes:
+            - sqlFile:
+                  dbms: postgresql
+                  encoding: utf8
+                  endDelimiter:  \n/\s*\n|\n/\s*$
+                  path: changelog/migrations/1673261785_create_message_view.sql
+                  relativeToChangelogFile: true
+                  stripComments: true
