@@ -34,6 +34,10 @@ public class MessageUserChatterFacade {
     public List<MessageUserChatterViewEntity> findAllByUserChatterId(@NotNull @Valid Long userId) {
         return messageUserChatterViewRepository.findAllByUserChatterId(userId);
     }
+
+    public MessageUserChatterViewEntity findById(Long messageId) {
+        return messageUserChatterViewRepository.findById(messageId).orElseThrow(() -> new EntityNotFoundException("message by id not found"));
+    }
     
     public MessageChatterEntity createMessage(@NotBlank @Valid String message, @NotNull @Valid Long userChatterId, Long returnMessageId) {
         UserChatterEntity userEntity = userChatterRepository.findById(userChatterId).orElseThrow(() -> new EntityNotFoundException("User by id not found."));
