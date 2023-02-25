@@ -8,22 +8,23 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import ru.ukrainskiy.rnd.chatter3.chatter3.integration.api.UserChatterControllerApi;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserChatterDto;
+import ru.ukrainskiy.rnd.chatter3.chatter3.model.wrapper.Result;
 import ru.ukrainskiy.rnd.chatter3.chatter3.usecase.adapter.UserChatterAdapter;
 
 @RestController
 @RequiredArgsConstructor
-public class UserChatterController implements UserChatterControllerApi {
+public class UserChatterController extends AbstractController implements UserChatterControllerApi {
 
     private final UserChatterAdapter adapter;
 
     @Override
-    public List<UserChatterDto> findAllUserChatter() {
-        return adapter.findAllUserChatter();
+    public Result<List<UserChatterDto>> findAllUserChatter() {
+        return super.result(adapter::findAllUserChatter);
     }
 
     @Override
-    public void setUserChatterActivated(@NotNull Long userId) {
-        adapter.setActive(userId);
+    public Result<?> setUserChatterActivated(@NotNull Long userId) {
+        return super.result(adapter::setActive, userId);
     }
     
 }

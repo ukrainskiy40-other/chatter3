@@ -47,7 +47,6 @@ public class UserChatterAdapter {
         entity.setLogin(form.username().toLowerCase());
         entity.setPasswordBcrypt(passwordEncoder.encode(form.password()));
         entity.setFullName(form.fullName());
-        entity.setUserEmailList(form.email());
         Optional<UserRoleEntity> userRoleEntity = userRoleFacade.findById(1l);
         if (userRoleEntity.isPresent()) {
             entity.setUserRole(userRoleEntity.get());

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserChatterDto;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.ukrainskiy.rnd.chatter3.chatter3.model.wrapper.Result;
 
 
 @RequestMapping("/api/v1/front/users-chatter")
@@ -18,10 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface UserChatterControllerApi {
 
     @GetMapping
-    List<UserChatterDto> findAllUserChatter();
+    Result<List<UserChatterDto>> findAllUserChatter();
 
     @PostMapping(path = "/activated/{userId}")
     @Secured({"ROLE_ADMIN"})
-    void setUserChatterActivated(@PathVariable Long userId);
+    Result<?> setUserChatterActivated(@PathVariable Long userId);
     
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.UserRoleDto;
+import ru.ukrainskiy.rnd.chatter3.chatter3.model.wrapper.Result;
 
 
 @RequestMapping("/api/v1/front/users-role")
@@ -22,15 +23,15 @@ public interface UserRoleControllerApi {
     
     @GetMapping
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
-    List<UserRoleDto> getAllUserRole();
+    Result<List<UserRoleDto>> getAllUserRole();
 
     @GetMapping("{userRoleId}")
-    UserRoleDto findUserRoleById(@PathVariable Long userRoleId);
+    Result<UserRoleDto> findUserRoleById(@PathVariable Long userRoleId);
 
     @PostMapping
-    UserRoleDto createUserRole(@RequestParam String roleName);
+    Result<UserRoleDto> createUserRole(@RequestParam String roleName);
 
     @DeleteMapping
-    void deleteUserRole(@RequestParam Long userRoleId);
+    Result<?> deleteUserRole(@RequestParam Long userRoleId);
     
 }

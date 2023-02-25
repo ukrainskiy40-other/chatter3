@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.dto.MessageUserChatterViewDto;
 import ru.ukrainskiy.rnd.chatter3.chatter3.model.form.MessageChatterForm;
+import ru.ukrainskiy.rnd.chatter3.chatter3.model.wrapper.Result;
 
 @RequestMapping("/api/v1/front/messages-chatter")
 @Tag(name = "messages-chatter")
@@ -17,9 +18,9 @@ import ru.ukrainskiy.rnd.chatter3.chatter3.model.form.MessageChatterForm;
 public interface MessageUserChatterApi {
 
     @GetMapping("/only-my-messages")
-    List<MessageUserChatterViewDto> findAllMyMessage();
+    Result<List<MessageUserChatterViewDto>> findAllMyMessage();
 
     @PostMapping
-    MessageUserChatterViewDto sendNewMessage(MessageChatterForm form);
+    Result<MessageUserChatterViewDto> sendNewMessage(MessageChatterForm form);
     
 }
