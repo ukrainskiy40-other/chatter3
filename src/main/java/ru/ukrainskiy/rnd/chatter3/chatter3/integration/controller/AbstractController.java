@@ -1,9 +1,7 @@
 package ru.ukrainskiy.rnd.chatter3.chatter3.integration.controller;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
+
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
@@ -17,6 +15,53 @@ import ru.ukrainskiy.rnd.chatter3.chatter3.model.wrapper.Result;
 
 @Slf4j
 public class AbstractController {
+
+	@FunctionalInterface
+	public interface TriFunction<T, U, V, R> {
+		R apply(T t, U u, V v);
+	}
+
+	@FunctionalInterface
+	public interface FourParameterFunction<T, U, V, W, R> {
+		R apply(T t, U u, V v, W w);
+	}
+
+	@FunctionalInterface
+	public interface SixParameterFunction<T, U, V, W, Y, Z, R> {
+		R apply(T t, U u, V v, W w, Y y, Z z);
+	}
+
+	protected <T, U, R> Result<R> result(BiFunction<T, U, R> s, T obj, U obj2) {
+		try {
+			return new Result<>(s.apply(obj, obj2));
+		} catch (Exception e) {
+			return resultError(e);
+		}
+	}
+
+	protected <T, U, V, R> Result<R> result(TriFunction<T, U, V, R> s, T obj, U obj2, V obj3) {
+		try {
+			return new Result<>(s.apply(obj, obj2, obj3));
+		} catch (Exception e) {
+			return resultError(e);
+		}
+	}
+
+	protected <T, U, V, W, R> Result<R> result(FourParameterFunction<T, U, V, W, R> s, T obj, U obj2, V obj3, W obj4) {
+		try {
+			return new Result<>(s.apply(obj, obj2, obj3, obj4));
+		} catch (Exception e) {
+			return resultError(e);
+		}
+	}
+
+	protected <T, U, V, W, Y, Z, R > Result<R> result(SixParameterFunction<T, U, V, W, Y, Z, R> s, T obj, U obj2, V obj3, W obj4, Y obj5, Z obj6) {
+		try {
+			return new Result<>(s.apply(obj, obj2, obj3, obj4, obj5, obj6));
+		} catch (Exception e) {
+			return resultError(e);
+		}
+	}
 
 	protected <T, R> Result<R> result(Function<T, R> s, T obj) {
 
