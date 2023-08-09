@@ -24,5 +24,5 @@ public interface UserChatterControllerApi {
     @PostMapping(path = "/activated/{userId}")
     @Secured({"ROLE_ADMIN"})
     Result<?> setUserChatterActivated(@PathVariable Long userId);
-    
+   
 }

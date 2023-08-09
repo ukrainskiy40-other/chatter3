@@ -24,6 +24,6 @@ public interface AuthControllerApi {
     @GetMapping(path = "/v1/user/logout")
     Result<?> logout();
 
-    @PostMapping(path = "/signup", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "/v1/user/signup", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     Result<?> registerUser(@RequestBody SignupForm signupForm);
 }

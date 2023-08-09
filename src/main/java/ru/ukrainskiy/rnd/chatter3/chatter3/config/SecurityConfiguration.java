@@ -45,9 +45,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf()
-                .disable();
+        http.csrf(csrf -> csrf.disable());
 
         http.authorizeHttpRequests(
                 auth -> auth
@@ -61,18 +59,16 @@ public class SecurityConfiguration {
                         .anyRequest()
                         .authenticated());
 
-        http.formLogin()
+        http.formLogin(login -> login
                 .loginProcessingUrl("/api/v1/user/login")
                 .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler)
-                .and()
-                .logout()
-                .logoutUrl("/api/v1/user/logout")
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(logoutSuccessHandler)
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint);
+                .failureHandler(authenticationFailureHandler))
+                .logout(logout -> logout
+                        .logoutUrl("/api/v1/user/logout")
+                        .deleteCookies("JSESSIONID")
+                        .logoutSuccessHandler(logoutSuccessHandler))
+                .exceptionHandling(handling -> handling
+                        .authenticationEntryPoint(restAuthenticationEntryPoint));
 
         return http.build();
 
@@ -80,8 +76,7 @@ public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        return encoder;
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Bean

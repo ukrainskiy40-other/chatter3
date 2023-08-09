@@ -2,3 +2,6 @@ databaseChangeLog:
   - include:
       file: migrations.yaml
       relativeToChangeLogFile: true
+  # - include:
+  #     file: migrations/001-create_table_from_xml.xml
+  #     relativeToChangeLogFile: true
