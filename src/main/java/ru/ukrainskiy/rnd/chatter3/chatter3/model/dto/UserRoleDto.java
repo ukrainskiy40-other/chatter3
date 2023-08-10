@@ -4,6 +4,5 @@ public record UserRoleDto(
         Long id,
         String userRole) {
 
-    public UserRoleDto {
-    }
+    public UserRoleDto {}
 }

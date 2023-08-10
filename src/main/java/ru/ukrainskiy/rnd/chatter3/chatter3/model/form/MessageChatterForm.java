@@ -7,6 +7,5 @@ public record MessageChatterForm(
     Long returnMessageId
 ) {
     
-    public MessageChatterForm {
-    }
+    public MessageChatterForm {}
 }

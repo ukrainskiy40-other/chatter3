@@ -1,4 +1,3 @@
-
 server:
   port: 8080
   error:
@@ -10,17 +9,15 @@ springdoc:
     doc-expansion: none
     disable-swagger-default-url: true
 
-
-
 spring:
   profiles.active: local
   application:
     name: CHATTER
   transaction:
     default-timeout: 36000
-  # mvc:
-    # pathmatch:
-      # matching-strategy: "ant_path_matcher"
+  mvc:
+    pathmatch:
+      matching-strategy: "ant_path_matcher"
 
   datasource:
     driver-class-name: org.postgresql.Driver
