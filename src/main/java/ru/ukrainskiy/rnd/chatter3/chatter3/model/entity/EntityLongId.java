@@ -15,7 +15,6 @@ public abstract class EntityLongId implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
     public Long getId() {
         return id;
     }
@@ -23,7 +22,6 @@ public abstract class EntityLongId implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -41,14 +39,10 @@ public abstract class EntityLongId implements Serializable {
         return Objects.hashCode(id);
     }
 
-
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
             "}";
     }
-
-
-
 }

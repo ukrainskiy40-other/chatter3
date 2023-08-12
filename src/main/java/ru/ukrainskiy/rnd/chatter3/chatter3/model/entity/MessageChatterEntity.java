@@ -14,18 +14,23 @@ import jakarta.persistence.Table;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Table(name = "message_chatter")
 @SQLDelete(sql = "UPDATE message_chatter SET deleted = true WHERE id=?;")
 @Where(clause = "deleted=false")
 public class MessageChatterEntity extends EntityLongId {
     
+    @EqualsAndHashCode.Include
     private String message;
+
     @ManyToOne
     @JoinColumn(name = "user_chatter_id")
+    @EqualsAndHashCode.Include
     private UserChatterEntity userChatter;
+
     @OneToOne
     @JoinColumn(name = "return_message_chatter_id")
+    @EqualsAndHashCode.Include
     private MessageChatterEntity returnMessageChatter;
 
 }

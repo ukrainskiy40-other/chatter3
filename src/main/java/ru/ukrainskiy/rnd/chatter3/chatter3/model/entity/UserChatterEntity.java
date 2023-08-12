@@ -19,25 +19,30 @@ import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=false, onlyExplicitlyIncluded = true)
 @Table(name = "user_chatter")
 @SQLDelete(sql = "UPDATE user_chatter SET deleted = true WHERE id=?;")
 @Where(clause = "deleted=false")
 public class UserChatterEntity extends EntityLongId {
 
     @NotBlank
+    @EqualsAndHashCode.Include
     private String login;
 
     @NotBlank
+    @EqualsAndHashCode.Include
     private String fullName;
 
+    @EqualsAndHashCode.Include
     private Boolean active;
 
     @NotBlank
+    @EqualsAndHashCode.Include
     private String passwordBcrypt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_role_id")
+    @EqualsAndHashCode.Include
     private UserRoleEntity userRole;
 
     @OneToMany(mappedBy = "userChatter", fetch = FetchType.LAZY)

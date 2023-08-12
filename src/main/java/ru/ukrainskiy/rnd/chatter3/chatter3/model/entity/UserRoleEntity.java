@@ -11,11 +11,12 @@ import lombok.*;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Table(name = "user_role")
 public class UserRoleEntity extends EntityLongId {
     
     @Column(name = "role_name")
+    @EqualsAndHashCode.Include
     private String userRole;
 
     @OneToMany(mappedBy = "userRole")
