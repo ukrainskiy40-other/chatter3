@@ -1,0 +1,8 @@
+driver=org.postgresql.Driver
+dbHost=localhost
+dbPort=5432
+dbName=chatter
+dbUser=
+dbPass=
+
+version=0.0.1
